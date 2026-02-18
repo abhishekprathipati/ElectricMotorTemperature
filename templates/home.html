@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Electric Motor Temperature</title>
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+    /* Background */
+    body {
+        background: linear-gradient(135deg, #2c3e50, #4ca1af);
+        min-height: 100vh;
+    }
+
+    /* Header */
+    .header {
+        background-color: #111;
+        color: #fff;
+        padding: 18px 40px;
+        font-size: 22px;
+        font-weight: 500;
+        letter-spacing: 1px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    /* Main Container */
+    .container {
+        width: 380px;
+        margin: 50px auto;
+        background: #ffffff;
+        padding: 35px 30px;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        text-align: center;
+    }
+
+    .container h2 {
+        margin-bottom: 8px;
+        color: #333;
+    }
+
+    .subtitle {
+        font-size: 13px;
+        color: #777;
+        margin-bottom: 20px;
+    }
+
+    /* Input Fields */
+    input {
+        width: 100%;
+        padding: 11px;
+        margin: 8px 0;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 14px;
+        transition: 0.3s;
+    }
+
+    input:focus {
+        border-color: #4ca1af;
+        outline: none;
+        box-shadow: 0 0 5px rgba(76,161,175,0.4);
+    }
+
+    /* Button */
+    button {
+        width: 100%;
+        padding: 12px;
+        margin-top: 15px;
+        background: linear-gradient(135deg, #2c3e50, #4ca1af);
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 15px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    /* Result */
+    .result {
+        margin-top: 20px;
+        padding: 12px;
+        background: #eafaf1;
+        border-left: 5px solid #2ecc71;
+        color: #2c662d;
+        font-size: 16px;
+        font-weight: 500;
+        border-radius: 4px;
+    }
+
+    /* Responsive */
+    @media(max-width: 480px) {
+        .container {
+            width: 90%;
+            margin-top: 30px;
+        }
+    }
+</style>
+
+
+</head>
+<body>
+
+<div class="header">
+    Electric Motor PM Surface Temperature
+</div>
+
+<div class="container">
+    <h2>Temperature Prediction</h2>
+    <div class="subtitle">
+        Enter motor parameters to predict PM surface temperature
+    </div>
+
+<form action="/predict" method="post">
+
+    <input type="number" step="any" name="ambient" placeholder="Ambient Temperature">
+    <input type="number" step="any" name="coolant" placeholder="Coolant Temperature">
+    <input type="number" step="any" name="u_d" placeholder="Voltage d-component">
+    <input type="number" step="any" name="u_q" placeholder="Voltage q-component">
+    <input type="number" step="any" name="motor_speed" placeholder="Motor Speed">
+    <input type="number" step="any" name="i_d" placeholder="Current d-component">
+    <input type="number" step="any" name="i_q" placeholder="Current q-component">
+
+    <button type="submit">Predict Temperature</button>
+</form>
+
+{% if prediction_text %}
+<div class="result">
+    {{ prediction_text }}
+</div>
+{% endif %}
+
+</div>
+
+</body>
+</html>

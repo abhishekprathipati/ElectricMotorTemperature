@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Manual Prediction</title>
+</head>
+<body style="text-align:center; font-family:Arial;">
+    <h2>Enter Motor Parameters</h2>
+
+```
+<form action="/predict_manual" method="post">
+    u_q: <input name="u_q" required><br><br>
+    coolant: <input name="coolant" required><br><br>
+    u_d: <input name="u_d" required><br><br>
+    motor_speed: <input name="motor_speed" required><br><br>
+    i_d: <input name="i_d" required><br><br>
+    i_q: <input name="i_q" required><br><br>
+    pm: <input name="pm" required><br><br>
+    ambient: <input name="ambient" required><br><br>
+    torque: <input name="torque" required><br><br>
+
+    <button type="submit">Predict Temperature</button>
+</form>
+
+<h3>{{ prediction_text }}</h3>
+
+<br>
+<a href="/">Back to Home</a>
+```
+
+</body>
+</html>
